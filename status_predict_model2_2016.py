@@ -88,4 +88,4 @@ for city in cities:
             print('No 2015 data!')
 
     # スコア出力
-    score_out.to_csv(out_dir + '/predict_2016by2015_' + city + '_ds.csv')
+    score_out.to_csv(out_dir + '/predict_2016by2015_' + city + '_ds2.csv')

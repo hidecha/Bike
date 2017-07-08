@@ -87,4 +87,4 @@ for city in cities:
             score_out = score_out.append(row_test, ignore_index=True)
 
     # CSV出力
-    score_out.to_csv(out_dir + '/predict_cross_val_' + city + '_bs.csv')
+    score_out.to_csv(out_dir + '/predict_cross_val_' + city + '_bs2.csv')
