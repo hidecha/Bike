@@ -1,3 +1,6 @@
+# statusデータを元にbike_availabilityヒートマップを描画
+# status_upd.py を先に実行
+
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -26,5 +29,7 @@ for city in cities:
     plt.figure(figsize=(10, sn_ids/2))
     sns.heatmap(ss_pv, fmt='g', center=0.5)
     plt.title('[' + city + '] 2016 Bike Availability')
-    plt.savefig(out_dir + '/2016_' + city + '_BikeAvailability_wd.png')
+    plt.savefig(out_dir + '/graph/2016_' + city + '_BikeAvailability_wd.png')
     plt.close()
+
+print('Done!')

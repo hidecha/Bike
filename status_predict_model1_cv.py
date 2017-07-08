@@ -1,3 +1,5 @@
+# bike_availabilityを目的変数とした回帰予測、クロスバリデーション
+
 import pandas as pd
 from sklearn import model_selection
 from sklearn.preprocessing import StandardScaler
@@ -29,8 +31,7 @@ X_cols = ['isoweek', 'weekday', 'hour', 'min', 'Sunny', 'Mean_Temperature_C', 'M
 y_cols = ['bike_availability']
 
 # 都市ごとのステータス
-#cities = ['San Jose', 'San Francisco', 'Palo Alto', 'Mountain View']
-cities = ['Mountain View']
+cities = ['San Jose', 'San Francisco', 'Palo Alto', 'Mountain View']
 for city in cities:
     ss_df = pd.read_csv(data_dir + '/ALL_status_' + city + '_upd.csv')
 
@@ -42,7 +43,7 @@ for city in cities:
     cols = ['station_id', 'type', 'model', 'score']
     score_out = pd.DataFrame(columns=cols)
 
-    for sn_id in [27, 28]: #list(station_data[station_data['landmark'] == city]['station_id']):
+    for sn_id in list(station_data[station_data['landmark'] == city]['station_id']):
         print('------------------ station_id:', int(sn_id), '------------------')
         ss_df_p = ss_df[ss_df['station_id'] == sn_id]
 
@@ -82,4 +83,6 @@ for city in cities:
                                  index=score_out.columns)
             score_out = score_out.append(row_test, ignore_index=True)
 
-    score_out.to_csv(out_dir + '/predict_cross_val_' + city + '_ba_test.csv')
+    score_out.to_csv(out_dir + '/predict_cross_val_' + city + '_ba.csv')
+
+print('Done!')

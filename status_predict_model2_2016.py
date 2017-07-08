@@ -1,3 +1,6 @@
+# bike_shortを目的変数とした分類予測
+# 2016年以外のstatusデータをtrain, 2016年をtestとする
+
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 import os
@@ -89,3 +92,5 @@ for city in cities:
 
     # スコア出力
     score_out.to_csv(out_dir + '/predict_2016by2015_' + city + '_ds2.csv')
+
+print('Done!')

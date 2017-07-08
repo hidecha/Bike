@@ -1,3 +1,5 @@
+# bike_shortを目的変数とする分類予測、クロスバリデーション
+
 import pandas as pd
 from sklearn import model_selection
 from sklearn.preprocessing import StandardScaler
@@ -88,3 +90,5 @@ for city in cities:
 
     # CSV出力
     score_out.to_csv(out_dir + '/predict_cross_val_' + city + '_bs2.csv')
+
+print('Done!')

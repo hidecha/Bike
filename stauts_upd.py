@@ -1,3 +1,6 @@
+# statusデータの前処理
+# weather_upd.py を先に実行
+
 import pandas as pd
 from datetime import datetime as dt
 import os
@@ -53,3 +56,5 @@ for city in cities:
     ss_wr_df_out = ss_wr_df.ix[:, ['station_id', 'bikes_available', 'docks_available', 'year', 'isoweek', 'weekday',
                         'hour', 'min', 'PDT', 'Mean_Temperature_C', 'Mean_Humidity', 'Mean_Wind_Speed_MPH', 'Sunny']]
     ss_wr_df_out.to_csv(data_dir + '/ALL_status_' + city + '_upd.csv')
+
+print('Done!')

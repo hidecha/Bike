@@ -1,3 +1,5 @@
+# weatherデータの前処理
+
 import pandas as pd
 from datetime import datetime as dt
 import os
@@ -59,3 +61,5 @@ wr_df['city'] = wr_df['Zip'].map(lambda x: zip_dic[x])
 
 # CSV出力
 wr_df.to_csv(data_dir + '/ALL_weather_data.csv')
+
+print('Done!')

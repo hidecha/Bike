@@ -1,4 +1,5 @@
-# 前提: trip_delta.py でTripデータを加工済み
+# tripデータを元にステーションごとのIn/Outグラフ化
+# trip_delta_upd.py を先に実行
 
 import pandas as pd
 import os
@@ -59,5 +60,7 @@ for city in cities:
         ax2.grid(True)
 
         # グラフ保存
-        plt.savefig(out_dir + '/ALL_' + city + '_' + str(sn_id) + '_Trip_InOut.png')
+        plt.savefig(out_dir + '/graph/ALL_' + city + '_' + str(sn_id) + '_Trip_InOut.png')
         plt.close()
+
+print('Done!')
