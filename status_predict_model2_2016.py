@@ -30,7 +30,7 @@ bs_th, ds_th = 0.15, 0.85
 X_cols = ['isoweek', 'weekday', 'hour', 'min', 'Sunny', 'Mean_Temperature_C', 'Mean_Wind_Speed_MPH']
 
 # 目的変数
-y_cols = ['dock_short']
+y_cols = ['bike_short']
 
 # 都市ごとのステータス
 cities = ['San Jose', 'San Francisco', 'Palo Alto', 'Mountain View']
@@ -90,7 +90,7 @@ for city in cities:
         else:
             print('No 2015 data!')
 
-    # スコア出力
-    score_out.to_csv(out_dir + '/predict_2016by2015_' + city + '_ds2.csv')
+        # CSV出力
+        score_out.to_csv(out_dir + '/predict_2016by2015_' + city + '_bs.csv')
 
 print('Done!')

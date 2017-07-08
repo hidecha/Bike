@@ -33,7 +33,8 @@ X_cols = ['isoweek', 'weekday', 'hour', 'min', 'Sunny', 'Mean_Temperature_C', 'M
 y_cols = ['bike_short']
 
 # 都市ごとのステータス
-cities = ['San Jose', 'San Francisco', 'Palo Alto', 'Mountain View']
+#cities = ['San Jose', 'San Francisco', 'Palo Alto', 'Mountain View']
+cities = ['San Francisco']
 for city in cities:
     ss_df = pd.read_csv(data_dir + '/ALL_status_' + city + '_upd.csv')
 
@@ -64,31 +65,33 @@ for city in cities:
 
         for model in [LogisticRegression(), DecisionTreeClassifier(), KNeighborsClassifier(n_neighbors=6),
                       RandomForestClassifier()]:
-            clf = model.fit(X_train, y_train)
-            y_pred = clf.predict(X_test)
 
-            # クロスバリデーション
-            score_val = model_selection.cross_val_score(model, X, y, cv=5)
+            if sum(y_train) != 0:
+                clf = model.fit(X_train, y_train)
+                y_pred = clf.predict(X_test)
 
-            print(clf.__class__.__name__)
-            train_score = clf.score(X_train, y_train)
-            test_score = clf.score(X_test, y_test)
-            val_score = score_val.mean()
-            print('train:', train_score)
-            print('test:', test_score)
-            print('val:', val_score)
+                # クロスバリデーション
+                score_val = model_selection.cross_val_score(model, X, y, cv=5)
 
-            row_train = pd.Series([int(sn_id), 'train', clf.__class__.__name__, train_score],
-                                  index=score_out.columns)
-            score_out = score_out.append(row_train, ignore_index=True)
-            row_test = pd.Series([int(sn_id), 'test', model.__class__.__name__, test_score],
-                                 index=score_out.columns)
-            score_out = score_out.append(row_test, ignore_index=True)
-            row_test = pd.Series([int(sn_id), 'val', model.__class__.__name__, val_score],
-                                 index=score_out.columns)
-            score_out = score_out.append(row_test, ignore_index=True)
+                print(clf.__class__.__name__)
+                train_score = clf.score(X_train, y_train)
+                test_score = clf.score(X_test, y_test)
+                val_score = score_val.mean()
+                print('train:', train_score)
+                print('test:', test_score)
+                print('val:', val_score)
 
-    # CSV出力
-    score_out.to_csv(out_dir + '/predict_cross_val_' + city + '_bs2.csv')
+                row_train = pd.Series([int(sn_id), 'train', clf.__class__.__name__, train_score],
+                                      index=score_out.columns)
+                score_out = score_out.append(row_train, ignore_index=True)
+                row_test = pd.Series([int(sn_id), 'test', model.__class__.__name__, test_score],
+                                     index=score_out.columns)
+                score_out = score_out.append(row_test, ignore_index=True)
+                row_test = pd.Series([int(sn_id), 'val', model.__class__.__name__, val_score],
+                                     index=score_out.columns)
+                score_out = score_out.append(row_test, ignore_index=True)
+
+        # CSV出力
+        score_out.to_csv(out_dir + '/predict_cross_val_' + city + '_bs.csv')
 
 print('Done!')
