@@ -1,0 +1,13 @@
+,station_id,type,model,score
+0,41.0,train,LogisticRegression,0.8723010293972017
+1,41.0,test,LogisticRegression,0.8727365991279815
+2,41.0,val,LogisticRegression,0.8723445864565139
+3,41.0,train,DecisionTreeClassifier,0.9990147025192411
+4,41.0,test,DecisionTreeClassifier,0.9957553218774045
+5,41.0,val,DecisionTreeClassifier,0.704218408161179
+6,41.0,train,KNeighborsClassifier,0.992131868852132
+7,41.0,test,KNeighborsClassifier,0.9840407796870992
+8,41.0,val,KNeighborsClassifier,0.7680650752558799
+9,41.0,train,RandomForestClassifier,0.9988629538833759
+10,41.0,test,RandomForestClassifier,0.9959284431905617
+11,41.0,val,RandomForestClassifier,0.7634715077191317
