@@ -21,7 +21,8 @@ base_dir = os.getenv('HOME') + '/PycharmProjects/Bike'
 data_dir = base_dir + '/data'
 out_dir = base_dir + '/output'
 
-station_data = pd.read_csv(data_dir + '/201608_station_data.csv')
+# ステーションデータ
+sn_df = pd.read_csv(data_dir + '/201608_station_data.csv')
 
 # しきい値
 bs_th, ds_th = 0.15, 0.85
@@ -45,7 +46,7 @@ for city in cities:
 
     score_out = pd.DataFrame(columns=['station_id', 'type', 'model', 'score'])
 
-    for sn_id in list(station_data[station_data['landmark'] == city]['station_id']):
+    for sn_id in list(sn_df[sn_df['landmark'] == city]['station_id']):
         ss_df_p = ss_df[ss_df['station_id'] == sn_id]
 
         # 2016以外をtrainデータ, 2016をtestデータとする
